@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<aiml>
+	<!-- ПРОВЕРКА ПАМЯТИ -->
+	<category>
+		<pattern>О ЧЕМ МЫ ГОВОРИЛИ</pattern>
+		<template>
+			<condition name="topic-memory">
+				<li value="unknown">Мы еще ни о чем конкретном не общались.</li>
+				<li>
+					Мы обсуждали следующее: <get name="topic-memory"/>.
+				</li>
+			</condition>
+		</template>
+	</category>
+
+	<!-- знакомство -->
+	<category>
+		<pattern>МЕНЯ ЗОВУТ *</pattern>
+		<template>
+			<think>
+				<set name="user-name"><formal><star/></formal></set>
+			</think>
+			<random>
+				<li>
+					Здравствуйте, <get name="user-name"/>!
+				</li>
+				<li>
+					Добро пожаловать,<get name="user-name"/>!
+				</li>
+				<li>
+					Рад знакомству, <get name="user-name"/>!
+				</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>КАК МЕНЯ ЗОВУТ</pattern>
+		<template>
+			Вас зовут <get name="user-name"/>!
+		</template>
+	</category>
+
+	<category>
+		<pattern>КТО ТЫ</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">моя личность</set>
+			</think>
+			<random>
+				<li>
+					<get name="user-name"/>, я бот, умеющий рассказывать интересные факты про азбуку Морзе и расшифровывать её.
+				</li>
+				<li>
+					Мой создатель не дал мне имени, <get name="user-name"/>, но научил меня общаться и расшифровывать буквы.
+				</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>КАК ТЕБЯ ЗОВУТ</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">мое имя</set>
+			</think>
+			<random>
+				<li> У меня нет имени, но вы можете предложить Ваши идеи моему создателю </li>
+				<li> Мой создатель не дал мне имени. </li>
+				<li> Я бот для которого не придумали имени. </li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>ЧТО ТЫ УМЕЕШЬ</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">мои умения</set>
+			</think>
+			<random>
+				<li>
+					Я могу поддержать беседу, <get name="user-name"/>, рассказать про азбуку Морзе или расшифровать букву на фото.	
+				</li>
+				<li>
+					Я умею общаться и распознавать буквы азбуки Морзе на фото, <get name="user-name"/>.	
+				</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>*</pattern>
+		<template>
+			<li>
+				Знаете, я пока не знаю как на это ответить, но обязательно научусь!
+			</li>
+		</template>
+	</category>
+
+	<!-- ========================================== -->
+	<!--            СОЗДАТЕЛЬ         -->
+	<!-- ========================================== -->
+
+	<category>
+		<pattern>КТО ПРИДУМАЛ АЗБУКУ МОРЗЕ</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">создатель азбуки Морзе</set>
+			</think>
+			<random>
+				<li>
+					Азбуку Морзе создал американский художник и изобретатель Сэмюэл Морзе в 1838 году. Ему помогал Альфред Вейл, который разработал саму систему кодов.
+				</li>
+				<li>
+					Её изобрел американец Сэмюэл Морзе. Интересно, что по основной профессии он был успешным художником, а не физиком.
+				</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>КТО СОЗДАТЕЛЬ</pattern>
+		<template>
+			<srai>КТО ПРИДУМАЛ АЗБУКУ МОРЗЕ</srai>
+		</template>
+	</category>
+
+	<!-- ========================================== -->
+	<!--             ИСТОРИЯ         -->
+	<!-- ========================================== -->
+
+	<category>
+		<pattern>ИСТОРИЯ</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">история азбуки Морзе</set>
+			</think>
+			<random>
+				<li>
+					Первая официальная депеша была отправлена в 1844 году из Вашингтона в Балтимор. Текст гласил: «Чудны дела Твои, Господи».
+				</li>
+				<li>
+					Изначально код передавался по проводам телеграфа. Позже азбука Морзе стала стандартом для флота и авиации.
+				</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>РАССКАЖИ ИСТОРИЮ</pattern>
+		<template>
+			<srai>ИСТОРИЯ</srai>
+		</template>
+	</category>
+
+	<!-- ========================================== -->
+	<!--           ОПРЕДЕЛЕНИЕ         -->
+	<!-- ========================================== -->
+
+	<category>
+		<pattern>ЧТО ТАКОЕ АЗБУКА МОРЗЕ</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">азбука морзе</set>
+			</think>
+			<random>
+				<li>
+					Азбуку Морзе — это способ кодирования знаков с помощью двух сигналов: длинного (тире) и короткого (точка).
+				</li>
+				<li>
+					Это дискретный способ представления информации. Каждая буква заменяется уникальной последовательностью сигналов.
+				</li>
+			</random>
+		</template>
+	</category>
+
+	<!-- ========================================== -->
+	<!--            ОПИСАНИЕ КЛАССОВ (БУКВ)         -->
+	<!-- ========================================== -->
+
+	<category>
+		<pattern>АЗБУКА МОРЗЕ</pattern>
+		<template>
+			<srai>ЧТО ТАКОЕ АЗБУКА МОРЗЕ</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>A</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква A</set>
+			</think>
+			<random>
+				<li>Это буква A (Alpha). Код: • — (точка, тире). Напев: «Ай-даа».</li>
+				<li>Перед вами A (Alpha). Пишется как точка и тире (• —).</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>B</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква B</set>
+			</think>
+			<random>
+				<li>Это буква B (Bravo). Код: — • • •. Напев для запоминания: «Баа-ки-те-кут».</li>
+				<li>B — Bravo. Один длинный и три коротких сигнала (— • • •).</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>D</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква D</set>
+			</think>
+			<random>
+				<li>Это буква D (Delta). Код: — • • (тире и две точки). Напев: «Доо-ми-ки».</li>
+				<li>D — Дельта. Один длинный сигнал и два коротких: — • •.</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>E</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква E</set>
+			</think>
+			<random>
+				<li>Это буква E (Echo). Код: • (одна точка). Самая короткая буква в азбуке.</li>
+				<li>Буква E (Эхо). Это просто одна точка (•).</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>G</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква G</set>
+			</think>
+			<random>
+				<li>Это буква G (Golf). Код: — — • (два тире, точка). Напев: «Гаа-раа-жи».</li>
+				<li>G — Гольф. Два длинных сигнала и один короткий в конце: — — •.</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>I</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква I</set>
+			</think>
+			<random>
+				<li>Это буква I (India). Код: • • (две точки). Напев: «И-ди».</li>
+				<li>Буква I. Обозначается двумя точками (• •).</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>K</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква K</set>
+			</think>
+			<random>
+				<li>Это буква K (Kilo). Код: — • — (тире, точка, тире). Напев: «Каа-к же таак».</li>
+				<li>K — Кило. Симметричная буква: длинный, короткий, длинный (— • —).</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>V</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква V</set>
+			</think>
+			<random>
+				<li>Это буква V (Victor). Код: • • • — (три точки, тире). Напев: «Жи-ви-те-таак».</li>
+				<li>V — Victor. Три коротких сигнала и один длинный (• • • —).</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>W</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква W</set>
+			</think>
+			<random>
+				<li>Это буква W (Whiskey). Код: • — — (точка, два тире). Напев: «Ви-даа-лаа».</li>
+				<li>W — Whiskey. Кодируется как • — —.</li>
+			</random>
+		</template>
+	</category>
+
+	<category>
+		<pattern>Z</pattern>
+		<template>
+			<think>
+				<set name="topic-memory">буква Z</set>
+			</think>
+			<random>
+				<li>Это буква Z (Zulu). Код: — — • • (два тире, две точки). Напев: «Заа-каа-ти-ки».</li>
+				<li>Z — Zulu. Два длинных сигнала и два коротких: — — • •.</li>
+			</random>
+		</template>
+	</category>
+
+
+	<!-- ========================================== -->
+	<!--      СИНОНИМЫ ДЛЯ ЗАПРОСОВ ПОЛЬЗОВАТЕЛЯ    -->
+	<!-- ========================================== -->
+
+	<category>
+		<pattern>расскажи про *</pattern>
+		<template>
+			<srai>
+				<star/>
+			</srai>
+		</template>
+	</category>
+	<category>
+		<pattern>расскажи про букву *</pattern>
+		<template>
+			<srai>
+				<star/>
+			</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>буква *</pattern>
+		<template>
+			<srai>
+				<star/>
+			</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>что такое *</pattern>
+		<template>
+			<srai>
+				<star/>
+			</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>КТО ЕЁ ПРИДУМАЛ</pattern>
+		<template>
+			<srai>КТО ПРИДУМАЛ АЗБУКУ МОРЗЕ</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>ЧТО ЭТО</pattern>
+		<template>
+			<srai>ЧТО ТАКОЕ АЗБУКА МОРЗЕ</srai>
+		</template>
+	</category>
+
+
+	<!--  Список известных букв -->
+	<category>
+		<pattern>КАКИЕ БУКВЫ ТЫ ЗНАЕШЬ</pattern>
+		<template>
+			На данный момент я могу распознать и рассказать про следующие буквы: A, B, D, E, G, I, K, V, W, Z.
+		</template>
+	</category>
+
+	<category>
+		<pattern>ЧТО ТЫ МОЖЕШЬ РАСПОЗНАТЬ</pattern>
+		<template>
+			Я распознаю буквы латинского алфавита: A, B, D, E, G, I, K, V, W, Z. Просто пришлите мне название буквы или её код!
+		</template>
+	</category>
+
+	<!-- Обработка уточняющих вопросов (контекст) -->
+	<category>
+		<pattern>РАССКАЖИ О НЕЙ ПОДРОБНЕЕ</pattern>
+		<template>
+			<condition name="topic-memory">
+				<li value="unknown">Вы еще не спрашивали меня про конкретные буквы. О чем именно рассказать?</li>
+				<li value="моя личность">Как я уже говорил, я — бот-помощник. Могу расшифровать код Морзе или рассказать историю его создания.</li>
+				<li value="мое имя">У меня действительно нет имени, я просто программа.</li>
+				<li value="мои умения">Кроме букв A, B, D, E, G, I, K, V, W, Z, я знаю историю создания азбуки и кто такой Сэмюэл Морзе.</li>
+				<li value="буква *">
+					<srai>
+						<get name="topic-memory"/>
+					</srai>
+				</li>
+				<li>
+					Я уже рассказал основное про <get name="topic-memory"/>. Что еще вас интересует?
+				</li>
+			</condition>
+		</template>
+	</category>
+
+	<category>
+		<pattern>ЧТО ЕЩЕ О НЕЙ ЗНАЕШЬ</pattern>
+		<template>
+			<srai>РАССКАЖИ О НЕЙ ПОДРОБНЕЕ</srai>
+		</template>
+	</category>
+
+	<category>
+		<pattern>РАССКАЖИ ПОДРОБНЕЕ</pattern>
+		<template>
+			<srai>РАССКАЖИ О НЕЙ ПОДРОБНЕЕ</srai>
+		</template>
+	</category>
+
+</aiml>
